@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import Sidebar from "./components/Sidebar";
+import ProfilePage from './pages/Profilepage';
+import ArticlesPage from "./pages/ArticlesPage";
+import "./App.css";
 
 function App() {
+  const [collapsed, setCollapsed] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-container">
+      <Sidebar collapsed={collapsed} onToggle={() => setCollapsed((c) => !c)} />
+
+      <main className="content">
+        <Routes>
+          <Route path="/" element={<Navigate to="/articles" replace />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/articles" element={<ArticlesPage />} />
+          
+          <Route path="*" element={<Navigate to="/articles" replace />} />
+        </Routes>
+      </main>
     </div>
   );
 }
