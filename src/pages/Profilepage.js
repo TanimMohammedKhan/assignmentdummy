@@ -7,7 +7,7 @@ const ProfilePage = () => {
   const user = {
     fullName: "Tanim Mohammed Khan",
     email: "tanimmkhan@gmail.com",
-    joined: "2025-0-15",
+    joined: "2025-08-15",
     
   };
 
